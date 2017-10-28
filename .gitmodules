@@ -4,3 +4,6 @@
 [submodule "tester"]
 	path = tester
 	url = https://github.com/bozaro/tech-db-forum
+[submodule "testdata"]
+	path = testdata
+	url = https://github.com/lieroz/HW2DataStorage
