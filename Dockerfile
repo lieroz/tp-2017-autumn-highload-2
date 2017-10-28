@@ -16,7 +16,7 @@ USER postgres
 
 # Create a PostgreSQL role named ``docker`` with ``docker`` as the password and
 # then create a database `docker` owned by the ``docker`` role.
-ADD data.gz /tmp/
+ADD /testdata/data.gz /tmp/
 RUN /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
     createdb -E UTF8 -T template0 -O docker docker &&\
