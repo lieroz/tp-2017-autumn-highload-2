@@ -62,4 +62,4 @@ EXPOSE 5000
 #
 # Запускаем PostgreSQL и сервер
 #
-CMD service postgresql start && java -Xms256M -Xmx1024M -jar $WORK/db_api/target/DB_Project-1.0-SNAPSHOT.jar
+CMD service postgresql start && java -Xms256M -Xmx512M -jar $WORK/db_api/target/DB_Project-1.0-SNAPSHOT.jar
