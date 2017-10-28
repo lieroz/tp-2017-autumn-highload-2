@@ -1,3 +1,6 @@
 [submodule "server"]
 	path = server
 	url = https://github.com/lieroz/Park_DB_API_Project
+[submodule "tester"]
+	path = tester
+	url = https://github.com/bozaro/tech-db-forum
