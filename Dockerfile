@@ -40,6 +40,14 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 # Back to the root user
 USER root
 
+#datadog
+RUN apt-get install -y apt-transport-https
+RUN sh -c "echo 'deb https://apt.datadoghq.com/ stable main' > /etc/apt/sources.list.d/datadog.list"
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7A7DA52
+RUN apt-get -y update
+RUN apt-get install -y datadog-agent
+RUN sh -c "sed 's/api_key:.*/api_key: 29f39d08fcc40afa9a65ffee4f6615cb/' /etc/dd-agent/datadog.conf.example > /etc/dd-agent/datadog.conf"
+
 #
 # Сборка проекта
 #
@@ -62,4 +70,4 @@ EXPOSE 5000
 #
 # Запускаем PostgreSQL и сервер
 #
-CMD service postgresql start && java -Xms256M -Xmx512M -jar $WORK/db_api/target/DB_Project-1.0-SNAPSHOT.jar
+CMD service postgresql start && /etc/init.d/datadog-agent start && java -Xms256M -Xmx512M -jar $WORK/db_api/target/DB_Project-1.0-SNAPSHOT.jar
