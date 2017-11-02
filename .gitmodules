@@ -7,3 +7,6 @@
 [submodule "testdata"]
 	path = testdata
 	url = https://github.com/lieroz/HW2DataStorage
+[submodule "nginx-datadog-docker"]
+	path = nginx-datadog-docker
+	url = https://github.com/Pacman29/nginx-datadog-docker
