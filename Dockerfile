@@ -64,10 +64,16 @@ ADD server/db_api/ $WORK/db_api/
 WORKDIR $WORK/db_api
 RUN mvn package
 
+# nginx
+RUN	apt-get install -y nginx
+
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD nginx.yaml /etc/dd-agent/conf.d
+
 # Объявлем порт сервера
 EXPOSE 80
 
 #
 # Запускаем PostgreSQL и сервер
 #
-CMD service postgresql start && /etc/init.d/datadog-agent start && java -Xms256M -Xmx512M -jar $WORK/db_api/target/DB_Project-1.0-SNAPSHOT.jar
+CMD service postgresql start && service nginx start && /etc/init.d/datadog-agent start && java -Xms256M -Xmx512M -jar $WORK/db_api/target/DB_Project-1.0-SNAPSHOT.jar
